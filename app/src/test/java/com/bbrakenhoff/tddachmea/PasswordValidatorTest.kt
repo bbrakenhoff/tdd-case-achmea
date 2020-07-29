@@ -14,6 +14,18 @@ class PasswordValidatorTest {
     }
 
     @Test
+    fun `isPasswordValid() returns true when password is valid`() {
+        // Arrange
+        val password = "Pizzzaaa1"
+
+        // Act
+        val isValid = passwordValidator.isPasswordValid(password)
+
+        // Assert
+        assertThat(isValid).isTrue()
+    }
+
+    @Test
     fun `isPasswordValid() returns false when password exists of less the minimum 8 chars`() {
         // Arrange
         val password = "pizzzaa"
@@ -26,18 +38,6 @@ class PasswordValidatorTest {
     }
 
     @Test
-    fun `isPasswordValid() returns true when password is 8 or more chars`() {
-        // Arrange
-        val password = "12345678"
-
-        // Act
-        val isValid = passwordValidator.isPasswordValid(password)
-
-        // Assert
-        assertThat(isValid).isTrue()
-    }
-
-    @Test
     fun `isPasswordValid() returns false when password contains no digit`(){
         // Arrange
         val password = "pizzzaaa"
@@ -46,6 +46,30 @@ class PasswordValidatorTest {
         val isValid = passwordValidator.isPasswordValid(password)
 
         // Assert
+        assertThat(isValid).isFalse()
+    }
+
+    @Test
+    fun `isPasswordValid() returns false when password does not contains a capital letter`() {
+        //Arrange
+        val password = "pizzaaaaa1"
+
+        //Act
+        val isValid = passwordValidator.isPasswordValid(password)
+
+        //Assert
+        assertThat(isValid).isFalse()
+    }
+
+    @Test
+    fun `isPasswordValid() returns false when password does not contains a lowercase letter`() {
+        //Arrange
+        val password = "PIZZAAAAAA1"
+
+        //Act
+        val isValid = passwordValidator.isPasswordValid(password)
+
+        //Assert
         assertThat(isValid).isFalse()
     }
 }
