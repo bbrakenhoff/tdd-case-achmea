@@ -3,7 +3,11 @@ package com.bbrakenhoff.tddachmea
 class PasswordValidator {
 
     fun isPasswordValid(password: String): Boolean =
-        isPasswordLengthCorrect(password) && containsPasswordDigit(password) && containsUppercaseCharacter(password) && containsLowercaseCharacter(password)
+        isPasswordLengthCorrect(password)
+        && containsPasswordDigit(password)
+        && containsUppercaseCharacter(password)
+        && containsLowercaseCharacter(password)
+        && containsPunctuation(password)
 
     private fun containsUppercaseCharacter(password: String) = password.any { it.isUpperCase() }
 
@@ -12,4 +16,7 @@ class PasswordValidator {
     private fun isPasswordLengthCorrect(password: String) = password.length >= 8
 
     private fun containsPasswordDigit(password: String) = password.any { it.isDigit() }
+
+    private fun containsPunctuation(password: String) = "@!#$%_*".any { it in password }
+
 }

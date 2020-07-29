@@ -16,7 +16,7 @@ class PasswordValidatorTest {
     @Test
     fun `isPasswordValid() returns true when password is valid`() {
         // Arrange
-        val password = "Pizzzaaa1"
+        val password = "Pizzzaa#1"
 
         // Act
         val isValid = passwordValidator.isPasswordValid(password)
@@ -65,6 +65,18 @@ class PasswordValidatorTest {
     fun `isPasswordValid() returns false when password does not contains a lowercase letter`() {
         //Arrange
         val password = "PIZZAAAAAA1"
+
+        //Act
+        val isValid = passwordValidator.isPasswordValid(password)
+
+        //Assert
+        assertThat(isValid).isFalse()
+    }
+
+    @Test
+    fun `isPasswordValid() returns false when password does not contain at least one punctuation`() {
+        // Arrange
+        val password = "Pizzaaa1"
 
         //Act
         val isValid = passwordValidator.isPasswordValid(password)
